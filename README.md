@@ -1,75 +1,65 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  # custom-hooks
 
-Currently, two official plugins are available:
+  A small Vite + React + TypeScript workspace for experimenting with reusable custom React hooks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+  This repository demonstrates a minimal app structure, a sample `useCart` hook (placeholder), simple product data, and a few UI components.
 
-## React Compiler
+  **Highlights**
+  - **TypeScript**: typed data models and components
+  - **Vite**: fast dev server and build
+  - **React**: components and hooks under `src/`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+  **Status**: Hook implementations are a work in progress — README documents intended API and structure.
 
-## Expanding the ESLint configuration
+  **Usage**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+  Installation:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+  ```bash
+  npm install
+  npm run dev
+  ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+  Build:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+  ```bash
+  npm run build
+  npm run preview
+  ```
 
-```
+  **Folder Structure**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  - [src/hooks/useCart.ts](src/hooks/useCart.ts) : custom hook for cart operations (placeholder)
+  - [src/data/products.ts](src/data/products.ts) : sample `Product` type and mock product list
+  - [src/components/ProductCard.tsx](src/components/ProductCard.tsx) : basic product card component
+  - [src/components/Card.tsx](src/components/Card.tsx) and [src/components/CardItem.tsx](src/components/CardItem.tsx) : UI pieces
+  - [src/App.tsx](src/App.tsx), [src/main.tsx](src/main.tsx) : app entry
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  **Planned / Example API**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+  The intended `useCart` hook should provide a simple cart API such as:
 
-```
+  ```ts
+  type CartItem = { id: number; quantity: number };
+
+  const { items, addItem, removeItem, clearCart, total } = useCart();
+
+  // Example usage in a component
+  function AddButton({ productId }: { productId: number }) {
+    const { addItem } = useCart();
+    return <button onClick={() => addItem(productId)}>Add</button>;
+  }
+  ```
+
+  Note: `useCart` in [src/hooks/useCart.ts](src/hooks/useCart.ts) is currently empty — implement the hook to match the API above.
+
+  **Project notes**
+  - Sample product data lives in [src/data/products.ts](src/data/products.ts).
+  - Components are intentionally minimal to focus on hook behavior.
+
+  **Next steps**
+  - Implement `useCart` in [src/hooks/useCart.ts](src/hooks/useCart.ts) and add unit tests.
+  - Wire the cart hook into `ProductCard` and `Card` components.
+
+
