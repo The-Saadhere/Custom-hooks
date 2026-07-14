@@ -1,6 +1,14 @@
 import CardItem from "./CardItem"
+import type { Product } from "../data/products"
 
-function Card({cart,onUpdateQuantity, onRemove, total}) {
+export type CartItems = {
+  cart: Product[]
+  onUpdateQuantity: ()=>void
+  onRemove: () => void
+  total: string | number
+}
+
+function Card({cart,onUpdateQuantity, onRemove, total} : CartItems) {
   if(cart.length === 0){
      return (
     <div className="cart empty">Your cart is empty</div>
@@ -17,7 +25,7 @@ function Card({cart,onUpdateQuantity, onRemove, total}) {
       />
     ))}
     <div className="cart-total">
-      <h3>Total ${typeof total ? total : total.toFixed()}</h3>
+      <h3>Total ${typeof total === "string" ? total : total.toFixed()}</h3>
       <button className="checkout-btn">Checkout</button>
     </div>
     </div>
