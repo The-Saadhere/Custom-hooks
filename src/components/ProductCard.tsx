@@ -3,7 +3,7 @@ import type { Product } from "../data/products";
 
 type ProductProps = {
   product: Product;
-  onAddToCart: (productId: number) => void;
+  onAddToCart: (product: Product) => void;
 };
 
 function ProductCard({ product, onAddToCart }: ProductProps) {
@@ -11,7 +11,7 @@ function ProductCard({ product, onAddToCart }: ProductProps) {
     <div className="product-card">
       <h3>{product.name}</h3>
       <p className="price">${product.price}</p>
-      <button aria-label={`Add ${product.name} to cart`} onClick={() => onAddToCart(product.id)}>
+      <button aria-label={`Add ${product.name} to cart`} onClick={() => onAddToCart(product)}>
         <FaShoppingCart /> Add to cart
       </button>
     </div>

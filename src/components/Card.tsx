@@ -1,10 +1,10 @@
 import CardItem from "./CardItem"
-import type { Product } from "../data/products"
+import type { CartItem } from "../hooks/useCart"
 
 export type CartItems = {
-  cart: Product[]
-  onUpdateQuantity: ()=>void
-  onRemove: () => void
+  cart: CartItem[]
+  onUpdateQuantity: (productId: number, quantity: number) => void
+  onRemove: (id: number) => void
   total: string | number
 }
 

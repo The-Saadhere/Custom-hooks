@@ -1,7 +1,7 @@
 import {useState, useEffect,useMemo} from "react"
 import type { Product } from "../data/products"
 
-export type cart = {
+export type CartItem = {
     id: number
     name: string
     price: number
@@ -9,7 +9,7 @@ export type cart = {
 }
 
 export function useCart() {
-    const [cart,setCart]=useState<cart []>(()=>{
+    const [cart,setCart]=useState<CartItem[]>(() => {
         try {
          const cartData = localStorage.getItem("cart")
          return cartData ? JSON.parse(cartData) : []
@@ -77,5 +77,12 @@ const total = useMemo(() => {
 }
     , [cart])
 
+    return {
+        cart,
+        addToCart,
+        removeFromCart,
+        updatedQuantity,
+        total
+}
 }
 

@@ -1,11 +1,13 @@
 import {FaTrash,FaPlus , FaMinus} from "react-icons/fa"
-import type { Product } from "../data/products"
-type CartItem = {
-  item: Product
-  onUpdateQuantity: () => void
-  onRemove: () => void
+import type { CartItem as CartItemType } from "../hooks/useCart"
+
+type CartItemProps = {
+  item: CartItemType
+  onUpdateQuantity: (productId: number, quantity: number) => void
+  onRemove: (id: number) => void
 }
-function CardItem({item,onUpdateQuantity,onRemove}: CartItem) {
+
+function CardItem({item,onUpdateQuantity,onRemove}: CartItemProps) {
   return (
     <div className="cart-item">
       <div className="item-details">
