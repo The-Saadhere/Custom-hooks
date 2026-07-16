@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import {useState, useEffect,useMemo} from "react"
 import type { Product } from "../data/products"
 
 export type cart = {
@@ -68,6 +68,14 @@ const updatedQuantity = (productId:number , quantity: number) => {
         )
     )
 }
+
+const total = useMemo(() => {
+    return Number(cart.reduce((sum,item)=> {
+        const itemTotal = item.price * (item.quantity || 0)
+       return sum + itemTotal
+    },0).toFixed(2))
+}
+    , [cart])
 
 }
 
