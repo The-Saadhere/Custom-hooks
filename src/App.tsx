@@ -9,17 +9,30 @@ function App() {
 
   return (
     <>
-      <div>
+    <div className="app">
+      <header>
+        <h1>Shopping Cart</h1>
+      </header>
+    </div>
+    <main className='products'>
+ 
+      <div className="products1">
+
         {products.map((product) => (
           <ProductCard product={product} key={product.id} onAddToCart={addToCart} />
         ))}
-      </div>
+        </div>
+        
+       
+      
       <Card
         cart={cart}
         onUpdateQuantity={updatedQuantity}
         onRemove={removeFromCart}
         total={total}
       />
+    </main>
+     
     </>
   )
 }

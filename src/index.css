@@ -39,9 +39,15 @@ main {
 }
 
 .products {
+  gap: 50px;
+  padding: 20px;
+}
+
+.products1 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 24px;
+  height: fit-content;
 }
 
 .product-card {
@@ -52,6 +58,7 @@ main {
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-height: 160px;
 }
 
 .product-card:hover {
